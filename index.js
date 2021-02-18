@@ -17,17 +17,7 @@ function luggageNotAllowed() {
 
 }
 
-// function notAllowed() {
 
-//     var a = document.getElementById('pickUp').value;
-//     var b = document.getElementById('drop').value;
-
-//     if(a == b){
-//         alert("Sorry You Can not choose the same location!!!!")
-//         location.reload()
-//     }
-
-// }
 var pickVal,pickup,dropVal,drop,value1;
 function hide1(){
 
@@ -46,9 +36,7 @@ function hide1(){
       if(pickup != "Pickup Location"){
         $(".pickAlert").html("");
     }
-      // else{
-    //   $(".pickAlert").html("");
-    // }
+     
   }
   function show1(){
   
@@ -68,14 +56,12 @@ function hide1(){
     }
   
   
-    // else{
-    //   $(".dropAlert").html("");  
-    // }
+    
   }
 
 
   function active(){
-    // console.log(value1,pickup,drop);
+    
     if((value1 == "Select CAB type") || (pickup == "Pickup Location") || (drop == "Drop Location")){
       $("#submit").removeAttr("data-toggle","modal");
       $("#submit").removeAttr("data-target","#exampleModal");

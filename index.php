@@ -1,4 +1,28 @@
-<?php include "array.php"; ?>
+<?php 
+  include "array.php";
+  include "Cab.php";
+
+  if(isset($_POST['submit'])) {
+    $pickupPoint = $_POST['pickUP'];
+    $dropPoint = $_POST['drop'];
+    $cabType = $_POST['cabType'];
+    $luggage = $_POST['weight'];
+    foreach($location as $x=>$val){
+      if($x==$pickupPoint){
+        $distance1=$val;
+      }
+      if($x==$dropPoint){
+        $distance2=$val;
+      }
+    }
+
+    $obj = new Cab($cabType,$luggage,$distance1,$distance2);
+
+    $obj->calculateFare();
+  }
+
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
