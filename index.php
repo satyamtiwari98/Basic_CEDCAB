@@ -3,8 +3,8 @@
   include "Cab.php";
 
   if(isset($_POST['submit'])) {
-    $pickupPoint = $_POST['pickUP'];
-    $dropPoint = $_POST['drop'];
+    $pickupPoint = $_POST['Pickup'];
+    $dropPoint = $_POST['Drop'];
     $cabType = $_POST['cabType'];
     $luggage = $_POST['weight'];
     foreach($location as $x=>$val){
@@ -18,7 +18,9 @@
 
     $obj = new Cab($cabType,$luggage,$distance1,$distance2);
 
-    $obj->calculateFare();
+    $fare = $obj->calculateFare();
+    echo $fare;
+    var_dump($_POST);
   }
 
 

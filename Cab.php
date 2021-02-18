@@ -24,7 +24,18 @@ class Cab {
            if($this->distance1>$this->distance2){
                $distance = $this->distance1-$this->distance2;
                if($distance<=10){
+                   $fare = $distance*14.50;
+                   $fare+=$miniFixed;
+                   return $fare;
+               }else{
                    
+               }
+           }else{
+               $distance = $this->distance2-$this->distance1;
+               if($distance<=10){
+                   $fare = $distance*14.50;
+                   $fare+=$miniFixed;
+                   return $fare;
                }
            }
             
