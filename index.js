@@ -6,6 +6,7 @@ function luggageNotAllowed() {
     if(a == 'CedMicro') {
     
         luggage.disabled = true;
+        luggage.value="not allowed";
         luggage.placeholder="Luggage Facility is not allowed for Ced Micro";
 
     }else {
@@ -18,58 +19,44 @@ function luggageNotAllowed() {
 }
 
 
-var pickVal,pickup,dropVal,drop,value1;
-function hide1(){
 
-    if(pickup != "PickUP Location"){
-      $(".drop option[value="+pickVal+"]").show();
-    }
-  
-      pickup = $(".pick").find(":selected").val();
-      console.log(pickup)
-  
-      if(pickup != "Pickup Location"){
-        $(".drop option[value="+pickup+"]").hide();
-        pickVal = pickup;
-      }
-  
-      if(pickup != "Pickup Location"){
-        $(".pickAlert").html("");
-    }
-     
-  }
-  function show1(){
-  
-      if(drop != "Drop Location"){
-        $(".pick option[value="+dropVal+"]").show();
-      }
-      drop = $(".drop").find(":selected").val();
-      console.log(drop)
-  
-      if(drop != "Drop Location"){
-        $(".pick option[value="+drop+"]").hide();
-        dropVal = drop;
-      }
-  
-      if(drop != "Drop Location"){
-        $(".dropAlert").html("");
-    }
-  
-  
+$(document).ready(function () {
+
+  $("#subId").click(function (e) {
+
+      e.preventDefault();
+
+      $.ajax({
+
+          url: 'logic.php',
+          type: 'POST',
+          datatype: 'html',
+          data: $('#myform').serialize(),
+
+          success: function (res) {
+          
+            $('.modal-body').html(res);
+            $('#my').modal('show');
+
+              }
+              
+           
+          }
+      );
+
+  });
+
+  $("#pickUp").on("change",function(){
+    $("#drop option").show();
+    $(`#drop option[value=${$(this).val()}]`).hide();
     
-  }
-
-
-  function active(){
+    });
     
-    if((value1 == "Select CAB type") || (pickup == "Pickup Location") || (drop == "Drop Location")){
-      $("#submit").removeAttr("data-toggle","modal");
-      $("#submit").removeAttr("data-target","#exampleModal");
-      console.log("Hello")
-  
-    }
-    if((value1 != "Select CAB type") && (pickup != "Pickup Location") && (drop != "Drop Location")){
-      $("#submit").attr("data-toggle","modal");
-      $("#submit").attr("data-target","#exampleModal");
-    }
-  }
+    $("#drop").on("change",function(){
+    $("#pickUp option").show();
+    $(`#pickUp option[value=${$(this).val()}]`).hide();
+    });
+
+});
+
+

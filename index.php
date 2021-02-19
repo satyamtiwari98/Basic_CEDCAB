@@ -1,30 +1,4 @@
-<?php 
-  include "array.php";
-  include "Cab.php";
-
-  if(isset($_POST['submit'])) {
-    $pickupPoint = $_POST['Pickup'];
-    $dropPoint = $_POST['Drop'];
-    $cabType = $_POST['cabType'];
-    $luggage = $_POST['weight'];
-    foreach($location as $x=>$val){
-      if($x==$pickupPoint){
-        $distance1=$val;
-      }
-      if($x==$dropPoint){
-        $distance2=$val;
-      }
-    }
-
-    $obj = new Cab($cabType,$luggage,$distance1,$distance2);
-
-    $fare = $obj->calculateFare();
-    echo $fare;
-    var_dump($_POST);
-  }
-
-
-?>
+<?php   include "array.php"; ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -87,10 +61,10 @@
     <p>AC Cabs for point to point travel</p>
 
 
-    <form action="" method="post">
+    <form action="" method="post" id="myform">
     <div class="input-group mb-3 mySelect">
   <label class="input-group-text" for="pickUp">PickUP</label>
-  <select name="Pickup" class="form-select pick" id="pickUp" onchange="hide1();active();">
+  <select name="Pickup" class="form-select pick" id="pickUp" required>
     <option selected>PickUP Location</option>
     <?php 
     foreach($location as $pickup => $pickup_value) {
@@ -103,7 +77,7 @@
 </div>
 <div class="input-group mb-3 mySelect">
   <label class="input-group-text" for="drop">Drop</label>
-  <select name="Drop" class="form-select drop" id="drop" onchange="show1();active();" >
+  <select name="Drop" class="form-select drop" id="drop" required >
     <option selected>Drop Location</option>
     <?php 
     foreach($location as $drop => $drop_value) {
@@ -116,7 +90,7 @@
 </div>
 <div class="input-group mb-3 mySelect">
   <label class="input-group-text" for="cabType">CAB Type</label>
-  <select name="cabType" class="form-select" id="cabType" onchange="luggageNotAllowed();">
+  <select name="cabType" class="form-select" id="cabType" onchange="luggageNotAllowed();" required>
     <option selected>Select CAB Type</option>
     <?php
     $length = count($cabType);
@@ -132,7 +106,7 @@
 </div>
 <div class="input-group mb-3 mySelect">
     
-<input type="submit" class="btn btn-success myBtn" value="Calculate Fare" name="submit">
+<input type="submit" class="btn btn-success myBtn" value="Calculate Fare" name="submit" id="subId" >
 </div>
     </form>
 
@@ -149,7 +123,23 @@
   </div>
   <!-- Copyright -->
 </footer>
-
+<div class="modal" id="my" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ride Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Book Ride</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   </div>  
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
