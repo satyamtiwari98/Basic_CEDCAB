@@ -135,7 +135,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Book Ride</button>
+        <button type="button" class="btn btn-success">Book Ride</button>
       </div>
     </div>
   </div>

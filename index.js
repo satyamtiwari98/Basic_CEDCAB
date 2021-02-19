@@ -2,7 +2,7 @@ function luggageNotAllowed() {
 
     var a = document.getElementById('cabType').value;
     var luggage = document.getElementById('luggage');
-    console.log(a);
+    
     if(a == 'CedMicro') {
     
         luggage.disabled = true;
